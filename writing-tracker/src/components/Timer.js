@@ -35,13 +35,21 @@ class Timer extends React.Component {
     }, 1000);
   };
 
+  displayTime = unit => {
+    if (this.state[unit] >= 10) {
+      return this.state[unit];
+    } else {
+      return "0" + this.state[unit].toString();
+    }
+  };
+
   render() {
     return (
       <div id="timer">
         <button onClick={this.toggleCountDown}>Start timer</button>
         <p>
           {" "}
-          {this.state.minutes} : {this.state.seconds}{" "}
+          {this.displayTime("minutes")} : {this.displayTime("seconds")}
         </p>
       </div>
     );
