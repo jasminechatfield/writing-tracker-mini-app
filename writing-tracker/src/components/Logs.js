@@ -12,9 +12,10 @@ const Logs = props => {
 
   return (
     <div id="logs">
+      <h2>Writing logs</h2>
       {props.completed.map(item => {
         return (
-          <div key={item.id}>
+          <div class="log" key={item.id}>
             No. {item.id}:{" "}
             {item.words ? `${item.words} words written` : getWords(item.id)}
           </div>

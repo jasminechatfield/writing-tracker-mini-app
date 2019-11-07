@@ -1,3 +1,48 @@
+* {
+  font-family: Lato, sans-serif;
+  margin: 0px;
+  padding: 0px;
+}
+
+body {
+  background: rgb(55, 55, 55);
+}
+
+h1,
+h2 {
+  font-family: Merriweather, serif;
+  padding: 10px;
+  margin-left: 20px;
+}
+
+button {
+  padding: 5px;
+  margin: 10px;
+  background-color: brown;
+  color: white;
+  border: 0px;
+  font-size: 16px;
+}
+
+input {
+  font-size: 20px;
+}
+
+#app {
+  margin: 100px auto;
+  width: 600px;
+  height: 600px;
+  background-color: gray;
+}
+
 #timer {
   font-size: 100px;
+  text-align: center;
+  position: relative;
+  bottom: 50px;
+}
+
+.log {
+  font-size: 24px;
+  margin-left: 50px;
 }
