@@ -23,6 +23,7 @@ class Timer extends React.Component {
       }
       if (this.state.minutes === 0 && this.state.seconds === 1) {
         clearInterval(myTimer);
+        this.props.addCompleted();
       }
       if (this.state.seconds === 0) {
         this.setState(currentState => {
@@ -43,10 +44,15 @@ class Timer extends React.Component {
     }
   };
 
+  resetTimer = () => {
+    this.setState({ minutes: 25, seconds: 0 });
+  };
+
   render() {
     return (
       <div id="timer">
-        <button onClick={this.toggleCountDown}>Start timer</button>
+        <button onClick={this.resetTimer}>Reset time</button>
+        <button onClick={this.toggleCountDown}>Start/Pause</button>
         <p>
           {" "}
           {this.displayTime("minutes")} : {this.displayTime("seconds")}
