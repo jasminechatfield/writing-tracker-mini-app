@@ -46,6 +46,12 @@ input {
   bottom: 30px;
 }
 
+#save {
+  position: relative;
+  bottom: 30px;
+  text-align: center;
+}
+
 .log {
   font-size: 24px;
   margin-left: 50px;

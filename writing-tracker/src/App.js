@@ -6,26 +6,11 @@ import Timer from "./components/Timer";
 import Logs from "./components/Logs";
 
 class App extends React.Component {
-  // state = {
-  //   completedCount: 0,
-  //   completed: []
-  // };
-
   state = {
     completedCount: 0,
-    completed: {}
+    completed: {},
+    history: {}
   };
-
-  // addCompleted = () => {
-  //   this.setState(currentState => {
-  //     let newCompleted = [...currentState.completed];
-  //     newCompleted.push({ id: currentState.completedCount + 1 });
-  //     return {
-  //       completedCount: currentState.completedCount + 1,
-  //       completed: newCompleted
-  //     };
-  //   });
-  // };
 
   addCompleted = () => {
     this.setState(currentState => {
@@ -57,12 +42,37 @@ class App extends React.Component {
     });
   };
 
+  saveAndClearLogs = () => {
+    this.saveLogToHistory();
+    this.clearState();
+  };
+
+  saveLogToHistory = () => {
+    localStorage.setItem(
+      Date.now().toString,
+      JSON.stringify({
+        completedCount: this.state.completedCount,
+        completed: this.state.completed
+      })
+    );
+  };
+
+  clearState = () => {
+    this.setState(currentState => {
+      return { ...currentState, completedCount: 0, completed: {} };
+    });
+  };
+
   render() {
+    console.log(localStorage);
     console.log(this.state);
     return (
       <div id="app">
         <Header />
         <Timer addCompleted={this.addCompleted} />
+        <div id="save">
+          <button onClick={this.saveAndClearLogs}>Save and clear logs</button>
+        </div>
         <Logs
           completed={this.state.completed}
           dealWithWords={this.dealWithWords}
@@ -70,6 +80,17 @@ class App extends React.Component {
       </div>
     );
   }
+
+  componentDidMount = () => {
+    let historyArray = Object.keys(localStorage).sort((a, b) => a - b);
+    let historyObj = {};
+    historyArray.forEach(session => {
+      historyObj[session] = JSON.parse(localStorage.session);
+    });
+    this.setState(currentState => {
+      return { ...currentState, history: { ...historyObj } };
+    });
+  };
 }
 
 export default App;
