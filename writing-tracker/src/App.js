@@ -49,7 +49,7 @@ class App extends React.Component {
 
   saveLogToHistory = () => {
     localStorage.setItem(
-      Date.now().toString,
+      Date.now().toString(),
       JSON.stringify({
         completedCount: this.state.completedCount,
         completed: this.state.completed
