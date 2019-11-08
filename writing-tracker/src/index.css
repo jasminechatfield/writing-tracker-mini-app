@@ -31,7 +31,6 @@ input {
 #app {
   margin: 100px auto;
   width: 600px;
-  height: 600px;
   background-color: gray;
 }
 
@@ -40,6 +39,11 @@ input {
   text-align: center;
   position: relative;
   bottom: 50px;
+}
+
+#logs {
+  position: relative;
+  bottom: 30px;
 }
 
 .log {

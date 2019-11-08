@@ -6,28 +6,36 @@ import Timer from "./components/Timer";
 import Logs from "./components/Logs";
 
 class App extends React.Component {
+  // state = {
+  //   completedCount: 0,
+  //   completed: []
+  // };
+
   state = {
     completedCount: 0,
-    completed: []
+    completed: {}
   };
+
+  // addCompleted = () => {
+  //   this.setState(currentState => {
+  //     let newCompleted = [...currentState.completed];
+  //     newCompleted.push({ id: currentState.completedCount + 1 });
+  //     return {
+  //       completedCount: currentState.completedCount + 1,
+  //       completed: newCompleted
+  //     };
+  //   });
+  // };
 
   addCompleted = () => {
     this.setState(currentState => {
-      let newCompleted = [...currentState.completed];
-      newCompleted.push({ id: currentState.completedCount + 1 });
       return {
         completedCount: currentState.completedCount + 1,
-        completed: newCompleted
+        completed: {
+          ...currentState.completed,
+          [Date.now()]: { id: Date.now(), date: new Date(Date.now()) }
+        }
       };
-    });
-  };
-
-  updateWordsWritten = (id, words) => {
-    this.setState(currentState => {
-      let newObj = { id, words };
-      let newCompleted = [...currentState.completed];
-      newCompleted[id - 1] = newObj;
-      return { completed: newCompleted };
     });
   };
 
@@ -36,6 +44,17 @@ class App extends React.Component {
     let words = event.target[0].value;
     let id = event.target.id;
     this.updateWordsWritten(id, words);
+  };
+
+  updateWordsWritten = (id, words) => {
+    this.setState(currentState => {
+      return {
+        completed: {
+          ...currentState.completed,
+          [id]: { ...currentState.completed[id], id, words }
+        }
+      };
+    });
   };
 
   render() {
