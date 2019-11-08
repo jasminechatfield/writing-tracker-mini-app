@@ -85,7 +85,7 @@ class App extends React.Component {
     let historyArray = Object.keys(localStorage).sort((a, b) => a - b);
     let historyObj = {};
     historyArray.forEach(session => {
-      historyObj[session] = JSON.parse(localStorage.session);
+      historyObj[session] = JSON.parse(localStorage[session]);
     });
     this.setState(currentState => {
       return { ...currentState, history: { ...historyObj } };
